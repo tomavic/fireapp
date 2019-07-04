@@ -19,13 +19,18 @@ export class BooksService {
   books$: Observable<Array<Book>>;
 
   constructor(private afs: AngularFirestore) {
-    this.books$ = afs.collection('books').valueChanges();
+    this.books$ = this.afs.collection('books').valueChanges();
   }
 
 
-  getBooks() {
+  getArticles() {
     return this.books$;
   }
+
+
+   getArticlesByID(id: String){
+    return this.afs.collection('books').valueChanges();
+   }
 
 
 

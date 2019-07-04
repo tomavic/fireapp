@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BooksService } from './services/books.service';
+import { BooksService, Book } from './services/books.service';
 
 @Component({
   selector: 'app-root',
@@ -7,16 +7,16 @@ import { BooksService } from './services/books.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'fireapp';
-  books;
+
+  books: Array<Book> = [];
 
   constructor(private booksService: BooksService) {
     
   }
 
   ngOnInit() {
-    this.books = this.booksService.getBooks().subscribe((res) => {
-      console.log(res);
+    this.booksService.getArticles().subscribe((res: Book[]) => {
+      this.books = res;
     })
   }
 }
